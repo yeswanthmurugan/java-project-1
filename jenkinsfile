@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    tools {
+      maven "maven-3.9.3"
+    }
+    stages {
+        stage('Checkout from git') {
+            steps {
+                // Get code from a GitHub repository
+                git url: 'https://github.com/cupcy-cloud/python-project-01.git', branch: 'main',
+                 credentialsId: 'git_credentials'
+            }
+        }
+
+        stage('Build the code') {
+            steps {
+                sh "mvn clean install -DskipTests"
+            }
+        }
+
+        stage('SonarQube static analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
+        
+        stage('Sonar Quality Gate') {
+            steps {
+                script {
+                    echo 'Quality Gate'
+                    timeout(time: 5, unit: 'MINUTES') {
+                        def qualityGate = waitForQualityGate()
+                        if (qualityGate.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qualityGate.status}"
+                        }
+                    }            
+                }
+            }
+        }
+     }
+}
+
+Administration > Configuration > Webhooks > create --> http://jenkins:8080/sonarqube-webhook/
