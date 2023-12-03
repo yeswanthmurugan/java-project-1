@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link data-th-href="@{/css/main.css?{id}(id=${timestamp})}" rel="stylesheet">
+    <title>CUPCY CLOUD DevOps</title>
+    <style>
+        body {
+            background-image: url('jenkins.png'); /* Replace 'jenkins.png' with the actual filename of your image */
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md" style="background-color: blue;">
+    <a class="navbar-brand" href="#" style="color: red;">Jenkins CICD with Argocd Project</a>
+</nav>
+
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1 th:text="${title}">Default title.</h1>
+        <p th:text="${msg}">Default text.</p>
+    </div>
+</main>
+
+<script data-th-src="@{/js/main.js}"></script>
+</body>
+</html>
