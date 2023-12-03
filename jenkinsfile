@@ -64,25 +64,46 @@ pipeline {
         }
 
 
-        stage('Commit & Push Manifest') {
-            steps {
-                script {
-                    commitID = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim();
-                    // Checkout code from Bitbucket on the branch
-                    git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/cupcy-cloud/python-project-01.git'
-                    sh "git config user.name 'cupcy-cloud'"
-                    sh "git config user.email 'thiyagarajan8606@gmail.com'"
-                    sh("sed -i 's/replaceImageTag/${commitID}/g' k8s-manifest/deployment.yml")
+        // stage('Commit & Push Manifest') {
+        //     steps {
+        //         script {
+        //             commitID = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim();
+        //             // Checkout code from Bitbucket on the branch
+        //             git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/cupcy-cloud/python-project-01.git'
+        //             sh "git config user.name 'cupcy-cloud'"
+        //             sh "git config user.email 'thiyagarajan8606@gmail.com'"
+        //             sh("sed -i 's/replaceImageTag/${commitID}/g' k8s-manifest/deployment.yml")
                     
-                    withCredentials([gitUsernamePassword(credentialsId: 'git_credentials', gitToolName: 'Default')]) {
-                        sh 'git fetch origin'
-                        sh 'git add -u'
-                        sh "git commit -m 'Jenkins commit'"
-                        sh 'git push origin main'
-                    }
+        //             withCredentials([gitUsernamePassword(credentialsId: 'git_credentials', gitToolName: 'Default')]) {
+        //                 sh 'git fetch origin'
+        //                 sh 'git add -u'
+        //                 sh "git commit -m 'Jenkins commit'"
+        //                 sh 'git push origin main'
+        //             }
+        //         }
+        //     }
+        // }
+
+        stage('Update Deployment File') {
+            environment {
+                GIT_REPO_NAME = "python-project-01"
+                GIT_USER_NAME = "cupcy-cloud"
+            }
+            steps {
+                withCredentials([string(credentialsId: 'git_credentials', variable: 'GITHUB_TOKEN')]) {
+                    sh '''
+                        git config user.name "cupcy-cloud"
+                        git config user.email "thiyagarajan8606@gmail.com"
+                        commitID = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim();
+                        sed -i "s/replaceImageTag/${commitID}/g" k8s-manifest/deployment.yml
+                        git add .
+                        git commit -m "Update deployment image to version ${commitID}"
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                    '''
                 }
             }
-        }
+        }        
+
      }
 }
 
