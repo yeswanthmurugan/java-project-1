@@ -1,21 +1,42 @@
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
 apiVersion: apps/v1
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
 kind: Deployment
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
 metadata:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
   name: spring-boot-app
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
   labels:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
     app: spring-boot-app
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
 spec:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
   replicas: 2
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
   selector:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
     matchLabels:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
       app: spring-boot-app
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
   template:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
     metadata:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
       labels:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
         app: spring-boot-app
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
     spec:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
       containers:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
       - name: spring-boot-app
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
         image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:01
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
         ports:
+mage.*+image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:e5e8437454+g
         - containerPort: 8080
