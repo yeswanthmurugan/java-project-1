@@ -12,8 +12,8 @@ public class StartApplication {
 
     @GetMapping("/")
     public String index(final Model model) {
-        model.addAttribute("title", "Welcome to the CUPCY CLOUD DevOps World!!!");
-        model.addAttribute("msg", "This is sample Application. Thanks!!!");
+        model.addAttribute("title", "Welcome to the CUPCY CLOUD DevOps World...");
+        model.addAttribute("msg", "This is sample Application. Thanks...");
         return "index";
     }
 

@@ -71,7 +71,7 @@ pipeline {
                     git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/cupcy-cloud/python-project-01.git'
                     sh "git config user.name 'cupcy-cloud'"
                     sh "git config user.email 'thiyagarajan8606@gmail.com'"
-                    sh("sed -i 's+image.*+image: ${REPOSITORY_URI}/java-project:${commitID}+g' k8s-manifest/deployment.yml")
+                    sh("sed -i 's+image: .*+image: ${REPOSITORY_URI}/java-project:${commitID}+g' k8s-manifest/deployment.yml")
                     
                     withCredentials([gitUsernamePassword(credentialsId: 'git_credentials', gitToolName: 'Default')]) {
                         sh 'git fetch origin'
