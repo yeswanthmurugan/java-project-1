@@ -19,5 +19,5 @@ spec:
         image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:450a0f642d
         ports:
         - containerPort: 8080
-      image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:450a0f642d
+      imagePullSecrets:
           - name: regcred
