@@ -19,3 +19,5 @@ spec:
         image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:commitID
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+          - name: regcred
