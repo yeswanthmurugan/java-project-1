@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        abhishekf5/ultimate-cicd:b6c2b701e9
+        image: abhishekf5/ultimate-cicd:df06604fd4
         ports:
         - containerPort: 8080
