@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-boot-app
+  name: java-application
   labels:
-    app: spring-boot-app
+    app: java
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: spring-boot-app
+      app: java
   template:
     metadata:
       labels:
-        app: spring-boot-app
+        app: java
     spec:
       containers:
-      - name: spring-boot-app
-        image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:d8f5e45d7e
+      - name: java-application
+        image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:commitID
         ports:
         - containerPort: 8080
