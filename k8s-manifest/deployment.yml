@@ -15,7 +15,7 @@ spec:
         app: java
     spec:
       containers:
-      - name: java-application
-        image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:commitID
+      - name: spring-boot-app
+        image: 620336895710.dkr.ecr.us-east-1.amazonaws.com/java-project:d8f5e45d7e
         ports:
         - containerPort: 8080
