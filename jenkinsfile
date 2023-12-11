@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-      AWS_ACCOUNT_ID = 
-      AWS_DEFAULT_REGION = 
-      REPOSITORY_URI = 
+      AWS_ACCOUNT_ID = ####
+      AWS_DEFAULT_REGION = #####
+      REPOSITORY_URI = #####
     }
     tools {
       maven "maven-3.9.3"
@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     commitID = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim();
-                    sh "docker build -t ${env.REPOSITORY_URI}/java-project:${commitID} ."
+                    sh "docker build -t ${env.REPOSITORY_URI}/####:${commitID} ."
                 }
             }
         }
