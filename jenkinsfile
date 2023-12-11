@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-      AWS_ACCOUNT_ID = "620336895710"
-      AWS_DEFAULT_REGION = "us-east-1"
-      REPOSITORY_URI = "620336895710.dkr.ecr.us-east-1.amazonaws.com"
+      AWS_ACCOUNT_ID = 
+      AWS_DEFAULT_REGION = 
+      REPOSITORY_URI = 
     }
     tools {
       maven "maven-3.9.3"
@@ -12,8 +12,8 @@ pipeline {
         stage('Checkout from git') {
             steps {
                 // Get code from a GitHub repository
-                git url: 'https://github.com/cupcy-cloud/python-project-01.git', branch: 'main',
-                 credentialsId: 'git_credentials'
+                git url: '#####', branch: '#####',
+                 credentialsId: '#####'
             }
         }
 
@@ -68,12 +68,12 @@ pipeline {
                 script {
                     commitID = sh(returnStdout: true, script: "git rev-parse --short=10 HEAD").trim();
                     // Checkout code from git
-                    git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/cupcy-cloud/python-project-01.git'
-                    sh "git config user.name 'cupcy-cloud'"
-                    sh "git config user.email 'thiyagarajan8606@gmail.com'"
+                    git branch: '####', credentialsId: '####', url: '####'
+                    sh "git config user.name '####'"
+                    sh "git config user.email '#####'"
                     sh("sed -i 's+image: .*+image: ${REPOSITORY_URI}/java-project:${commitID}+g' k8s-manifest/deployment.yml")
                     
-                    withCredentials([gitUsernamePassword(credentialsId: 'git_credentials', gitToolName: 'Default')]) {
+                    withCredentials([gitUsernamePassword(credentialsId: '####', gitToolName: 'Default')]) {
                         sh 'git fetch origin'
                         sh 'git add -u'
                         sh "git commit -m 'Update deployment image to ${commitID}'"
