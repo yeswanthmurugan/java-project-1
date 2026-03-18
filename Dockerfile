@@ -1,6 +1,6 @@
 # You can change this base image to anything else
 # But make sure to use the correct version of Java
-FROM openjdk:11
+FROM openjdk:27-ea-trixie
 
 # Copy the source code to the container
 COPY . .
@@ -14,4 +14,4 @@ RUN apt-get update && \
 EXPOSE 8080
 
 # This should not be changed
-ENTRYPOINT ["java","-jar","target/spring-boot-web.jar"]
+CMD ["java","-jar","target/spring-boot-web.jar"]
